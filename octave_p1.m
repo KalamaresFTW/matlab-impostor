@@ -36,7 +36,7 @@ format rat; 2/3, 1.44444
 %%acos -> arcocoseno
 %%atan -> aroctangente
 
-%%%ARREPRESENTAÇOM GRÂFICA
+%%vectores
 v = [3 6 2 1 5] %vector
 v'              %vector columna
 
@@ -58,5 +58,50 @@ linspace(2, 10, 3)%devuelve un vector con tres posiciones
 v = 3:-1.5:-4.5
 v = linspace(3, -4.5, 6)
 v([1 3 5])
+v([1:2:6])
 
+%%sum(v)
+%%max(v)
+%%min(v)
+%%length(v)
+
+%%ejercicio 1.6
+v = [4 -sqrt(2) 2.5]
+v.*v
+v.^2
+
+%%%ARREPRESENTAÇOM GRÂFICA
+%% plot(x,y) dos vectores definidios con anterioridad, de misma longitud
+x = [1 3]
+y = [2 5]
+
+plot(x,y)
+
+x = [ 1 2 3 -4 5]
+y = [6 -1 7 9 -2]
+
+plot(x,y)
+
+%%making the graphica pretty
+title('poligonal')
+xlabel('Eje de abscisas')
+ylabel('Eje de ordenadas')
+text(1,6,'(1,6)')
+legend('linea poligonal')
+
+%%making a BRAND NEW WINDOW
+figure(2)
+x = 0:pi/100:pi;
+y = cos(x);
+z = cos(3*x);
+plot (x,y,x,z)
+
+%%ejercicio 1.7
+x = 0:pi/100:2*pi;    %define un vector x entre 0 y 2pi
+y = sin(x);           %define un vector y como seno de x
+plot(x,y)             %dibuja la gráfica de x frente a y
+hold on               %hace que las siguientes órdenes aparezcan en la misma figura
+z = cos(x);           %define un vector z como coseno de x
+plot (x, z, 'g-.')    %dibuja la gráfica de x frente a z con la linea verde y discontinua
+hold off              %deja de obligar a trabajar en ese espacio
 
