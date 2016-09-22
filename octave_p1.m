@@ -45,7 +45,18 @@ v = [3 6 2 7 1 5] %hace un vector v
 v(3)              %devuelve la tercera posición del vector
 v([2,4])          %devuelve las posiciones 2 y 4 del vector
 zeros (1,5);      %hace un vector tamaño 5 con 5 ceros
+                  %puede crear vectores / columnas / matrices de ceros
 linspace(2, 10, 3)%devuelve un vector con tres posiciones
                   %con numeros equidistantes entre 2 y 10
 
-                  
+%%operador dos puntos ->
+%% v = primera componente[:incremento]:valor que determina la última componente
+5:3:17
+1/2:7/2
+
+%%ejercicio 1.5
+v = 3:-1.5:-4.5
+v = linspace(3, -4.5, 6)
+v([1 3 5])
+
+
