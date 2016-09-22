@@ -102,6 +102,18 @@ y = sin(x);           %define un vector y como seno de x
 plot(x,y)             %dibuja la gráfica de x frente a y
 hold on               %hace que las siguientes órdenes aparezcan en la misma figura
 z = cos(x);           %define un vector z como coseno de x
-plot (x, z, 'g-.')    %dibuja la gráfica de x frente a z con la linea verde y discontinua
+plot (x, z, 'r-.')    %dibuja la gráfica de x frente a z con la linea verde y discontinua
 hold off              %deja de obligar a trabajar en ese espacio
 
+t = 0:pi/180:2*pi;
+x = cos(t);
+y = sin(t);
+plot(x,y);
+%axis equal;
+axis([-2 2 -2 2])
+text(0,0,'(0,0) ciudadanos Kappa');
+
+%%ejercicio 1.8
+t = -10:1/100:10;
+plot(t);
+text(-4,9,'(-4,9)');
