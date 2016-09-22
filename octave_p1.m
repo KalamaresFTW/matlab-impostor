@@ -114,6 +114,7 @@ axis([-2 2 -2 2])
 text(0,0,'(0,0) ciudadanos Kappa');
 
 %%ejercicio 1.8
-t = -10:1/100:10;
-plot(t);
-text(-4,9,'(-4,9)');
+
+v = axis([-10 10 -10 10]);
+hold on
+plot(-4,9,'r*')
