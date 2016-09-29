@@ -155,7 +155,7 @@ k.^3
 function factorialesYcubos(n)
   if rem(n,2) == 0 && n <= 8
     factorial(n)
-  elseif rem(n,2) != 0 && <= 9
+elseif rem(n,2) ~= 0 && <= 9
     n^3
   else disp ('eres parvo ou comes merda?')
   endif
