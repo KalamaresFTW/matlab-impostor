@@ -223,4 +223,50 @@ z = (x^2 - 1) / (x^2 + 2*x + 1); simplify(z)
 y = x ^ 2 + sin(3*x) - 1/2
 grafica = ezplot(y,[-10,10])
 set(grafica,'color','r','linestyle','-.')
-%%
+
+
+%%ejercicio 1.14
+%calcula:
+%a) 2*(3/4)
+2*(3/4)
+%b) (2*3)/4
+(2*3)/4
+%c) ¿son iguales los resultados de los apartados anteriores?
+% si
+%d) ¿es correcta la siguente orden?:
+2*3/4
+% si, opera de izquierda a derecha
+
+%%ejercicio 1.15
+%calcula
+%a) (2^3)^4
+(2^3)^4
+%b) 2^(3^4)
+2^(3^4)
+%c) ¿son iguales los resultados de los apartados anteriores?
+% no
+%d) ¿es correcta la siguiente orden?:
+2^3^4
+%si, opera de izquierda a derecha (como en el apartado a))
+
+%%ejercicio 1.16
+%obtén la representacion de 51.555 en formato long e y en formato bank
+format long e; 51.555
+format bank; 51.555
+%{
+a la vista del resultado obtenido, ¿cuál será la representación en formato bank
+de 51.554? ¿por qué?
+%}
+%51.55, porque el formato bank solo imprime 2 decimales
+
+%%ejercicio 1.17
+%a) ¿Qué calcula la instrucción siguiente?
+x = [1/5, 3, 2, -7, 0.2];
+v = [2, 4, 5];
+x(v)
+% devuelve las posiciones v del vector x
+%{
+b) crea una tabla formada por tres columnas. En la primera mostrará los valores
+de las componentes del vector x, en la segunda el valor de sus raíces cuadradas
+y en la tercera sus raíces cúbicas en formato largo.
+%}
