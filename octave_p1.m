@@ -118,3 +118,37 @@ text(0,0,'(0,0) ciudadanos Kappa');
 v = axis([-10 10 -10 10]);
 hold on
 plot(-4,9,'r*')
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+v = -1:1:5;
+v >= 2
+(v>=2)&(v<4)
+
+y = v(v.^2>=3)
+
+% funcion definida a trozos:
+% 1-2x si x<=-1
+%(x+1)^3 + 2x si x>-1
+x = linspace(-2,3,1000);
+y = (1-2*x).*(x<= -1)+((x+1).^3 + 2*x).*(x>-1);
+plot(x,y,'ro');
+title('funcion definida a trozos')
+
+%%bucles
+org = 1;
+for k = 1:10
+  org,k^2
+  org = org+1;
+endfor
+
+
+for k = 6:2:20
+  k^3
+endfor
+
+k = 6:2:20
+k.^3
+
+%if
