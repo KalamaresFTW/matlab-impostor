@@ -223,3 +223,4 @@ z = (x^2 - 1) / (x^2 + 2*x + 1); simplify(z)
 y = x ^ 2 + sin(3*x) - 1/2
 grafica = ezplot(y,[-10,10])
 set(grafica,'color','r','linestyle','-.')
+%%
