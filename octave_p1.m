@@ -152,3 +152,74 @@ k = 6:2:20
 k.^3
 
 %if
+function factorialesYcubos(n)
+  if rem(n,2) == 0 && n <= 8
+    factorial(n)
+  elseif rem(n,2) != 0 && <= 9
+    n^3
+  else disp ('eres parvo ou comes merda?')
+  endif
+endfunction
+
+%%strings
+
+disp(['texto1 ','texto2'])
+disp(['Numero iteraciones: ', num2str(10)])
+
+error('texto')  %% <- peta
+
+
+fix(9.90)
+floor(9.90)
+ceil(9.90)
+
+fprintf('cantidad %5.2f\n', 5.6789)   %normal
+fprintf('cantidad %5.2e\n', 0.000051) %notacion cientifica
+fprintf('cantidad %5.2g\n', 5.6789)   %basssura
+
+a = input('introduce el valor de a: ')
+a = input('introduce el valor de a: ','s')  %strings
+
+menu('elige el algoritmo', 'dicotomia', 'Newton-Raphson')
+
+pause (10) %espera durante 10 segundos
+
+syms a b c
+f = 3*a + 1
+
+a = sym(1/3)
+
+double(a)
+vpa(1/3, 6)
+
+num2str(1230.5)
+
+clear a
+clear all
+
+findsym(a*x^2+b*x+c)
+
+solve(3*x+15 == 0, x)
+solve(a*x^2+b*x+c == 0, x)
+
+help @sym/solve
+
+subs(a*x^2+b*c+c,x,1)
+subs(a*x^2+b*x+c,{a,b,c},{2,3,5})
+
+%%ejercicio 1.12
+syms a b c x ; solve(a*x^2 + b*x + c == 0, x)
+syms a b c x ; solve(a*x^2 + b*x + c == 0, a)
+[x,y,z] = solve (2*x + 2*y - z == 0, x + y + z == 3, y - z == -2)
+
+%%ejercicio 1.13
+y = (x^2 - 1)/(2*(x+4)^3); numden(y)
+[num, den] = numden(y)
+factor(y)
+expand(den)
+z = (x^2 - 1) / (x^2 + 2*x + 1); simplify(z)
+
+%%ezplot
+y = x ^ 2 + sin(3*x) - 1/2
+grafica = ezplot(y,[-10,10])
+set(grafica,'color','r','linestyle','-.')
