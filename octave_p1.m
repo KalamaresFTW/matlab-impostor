@@ -270,3 +270,128 @@ b) crea una tabla formada por tres columnas. En la primera mostrará los valores
 de las componentes del vector x, en la segunda el valor de sus raíces cuadradas
 y en la tercera sus raíces cúbicas en formato largo.
 %}
+format long;
+tabla = [x',sqrt(x'), (x.^1/3)']
+
+%%ejercicio 1.18
+%{
+La letra del DNI se obtiene así: se calcula el resto de dividir el valor numéri-
+co del DNI entre 23. La correspondencia entre la letra a asignar y el valor del
+resto obtenido figura en el cuadro siguiente (ver apuntes):
+Obtén la fórmula que calcula el resto, usando solo comandos vistos en esta prác-
+tica. Comprueba, con tu DNI y con el de algún compañero, que la fórmula es cor-
+recta.
+
+A = 7;
+switch (A)
+  case { 6, 7 }
+    printf ("variable is either 6 or 7\n");
+  otherwise
+    printf ("variable is neither 6 nor 7\n");
+endswitch
+%}
+function y = dni(x)
+  switch (rem(x,23))
+    case 0
+      y = 'T';
+    case 1
+      y = 'R';
+    case 2
+      y = 'W';
+    case 3
+      y = 'A';
+    case 4
+      y = 'G';
+    case 5
+      y = 'M';
+    case 6
+      y = 'Y';
+    case 7
+      y = 'F';
+    case 8
+      y = 'P';
+    case 9
+      y = 'D';
+    case 10
+      y = 'X';
+    case 11
+      y = 'B';
+    case 12
+      y = 'N';
+    case 13
+      y = 'J';
+    case 14
+      y = 'Z';
+    case 15
+      y = 'S';
+    case 16
+      y = 'Q';
+    case 17
+      y = 'V';
+    case 18
+      y = 'H';
+    case 19
+      y = 'L';
+    case 20
+      y = 'C';
+    case 21
+      y = 'K';
+    case 22
+      y = 'E';
+  endswitch
+  fprintf(['La letra es: ' y '\n'] )
+endfunction
+
+%%ejercicio 1.19
+%{
+Representa gráficamente el coseno de un ángulo a de 0 a 2*pi a saltos de 1/8.
+Etiqueta los ejes y ponle un título. Dibuja, conjuntamente con el coseno, la
+recta horizontal que pasa por el valor más alto que toma la función en el inter-
+valo [0,2*pi]. Es decir, la recta tangente a la gráfica del coseno en el punto
+donde el coseno alcanza su valor máximo. Dibuja esta recta en otro color y otro
+trazado. Crea una leyenda identificativa de cada una de las dos funciones dibu-
+jadas.
+%}
+x = 0:1/8:2*pi;
+plot(x,sin(x));
+title('Función seno en [0,2pi]');
+xlabel('abscisas');
+ylabel('ordenadas');
+axis([0 2*pi -1.1 1.1]);
+hold on;
+plot(x,1,'r*'); %son puntos no recta.
+legend('sin(x)','tan');
+hold off;
+
+%%ejercicio 1.20
+%{
+a) El tramo más inclinado del tranvía del monte Washington en New Hampshire
+tiene un grado de inclnación (excepcional) del 37.1. A lo largo de este tramo,
+en sentido de subida, los asientos de primera fila están 4.27 metros más arriba
+que los de la última fila. ¿Qué distancia separa a la primera fila de la última?
+  Indicación: el grado de inclinación se define como la medida (dada en porcen-
+  taje) de la pendiente.
+b) Representa la situación usando vectores y el comando plot.
+%}
+
+
+%%ejercicio 1.21
+%{
+Las escalas de temperatura Fahrenheit(F) y Celsius(C) se relacionan a través de
+una ecuación lineal. Sabiendo que el punto de congelación del agua es a 0ºC o a
+32ºF, y que el punto de ebullición se alcanza a 100ºC o a 212ºF, se pide:
+%}
+%a) Halla la relación lineal entre ambas escalas:
+c = 0:1:100
+f = 32:212
+%{
+b) Representa la función cuya expresión has hallado en el apartado anterior
+usando vectores y el comando plot.
+%}
+
+%{
+c) Existe alguna tempreatura en la cual un termómetro en grados Celsius propor-
+cione la misma lectura que un termómetro en grados Fahrenheit? No se pide que
+resuelvas ninguna ecación para responder a esta pregunta. Lo que debes hacer es
+interpretar gráficamente la situación.
+%}
