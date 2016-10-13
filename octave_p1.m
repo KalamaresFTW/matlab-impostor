@@ -292,52 +292,29 @@ endswitch
 %}
 function y = dni(x)
   switch (rem(x,23))
-    case 0
-      y = 'T';
-    case 1
-      y = 'R';
-    case 2
-      y = 'W';
-    case 3
-      y = 'A';
-    case 4
-      y = 'G';
-    case 5
-      y = 'M';
-    case 6
-      y = 'Y';
-    case 7
-      y = 'F';
-    case 8
-      y = 'P';
-    case 9
-      y = 'D';
-    case 10
-      y = 'X';
-    case 11
-      y = 'B';
-    case 12
-      y = 'N';
-    case 13
-      y = 'J';
-    case 14
-      y = 'Z';
-    case 15
-      y = 'S';
-    case 16
-      y = 'Q';
-    case 17
-      y = 'V';
-    case 18
-      y = 'H';
-    case 19
-      y = 'L';
-    case 20
-      y = 'C';
-    case 21
-      y = 'K';
-    case 22
-      y = 'E';
+    case 0 y = 'T';
+    case 1 y = 'R';
+    case 2 y = 'W';
+    case 3 y = 'A';
+    case 4 y = 'G';
+    case 5 y = 'M';
+    case 6 y = 'Y';
+    case 7 y = 'F';
+    case 8 y = 'P';
+    case 9 y = 'D';
+    case 10 y = 'X';
+    case 11 y = 'B';
+    case 12 y = 'N';
+    case 13 y = 'J';
+    case 14 y = 'Z';
+    case 15 y = 'S';
+    case 16 y = 'Q';
+    case 17 y = 'V';
+    case 18 y = 'H';
+    case 19 y = 'L';
+    case 20 y = 'C';
+    case 21 y = 'K';
+    case 22 y = 'E';
   endswitch
   fprintf(['La letra es: ' y '\n'] )
 endfunction
