@@ -11,6 +11,43 @@ lizados para representar las rectas difieran de los que presente la curva. In-
 cluye en el dibujo las ecuaciones de las asíntotas, identificando cada una de
 ellas. Además, resalta los extremos que hayas encontrado.
 %}
+syms h x
+h = 2*x / (1+2^(x+1))
+[num,den] = numden(h)
+%guardamos el denominador en den
+solve(den ==0)
+%comprobamos si el denominador se anula -> no se anula
+
+%comprobamos si hay asíntotas horizontales
+limit(h,x,inf)  %y=0 es una asíntota horizontal cuando h tiende a +inf
+limit(h,x,-inf)
+
+%comprobamos si hay asíntotas oblícuas
+limit(h/x,inf)
+limit(h/x,-inf) %y=2x+n es una asíntota oblícua
+
+%comprobamos extremos
+solve(diff(h) == 0)
+c = double(solve(diff(h) == 0))
+
+subs(diff(h,2),x,c) %máximo relativo
+
+%comprobamos extremos absolutos
+double(subs(diff(h),x,1.5)) %creciente
+double(subs(diff(h),x,2))   %decreciente
+%la función crece hasta c y después decrece y se queda en la asíntota horizontal
+%y=0. Máximo absoluto c, min absoluto /E
+
+%c)
+ezplot(h,[-10,10])
+hold on
+plot([-10,10],[0,0],'r.-')
+title('hueheuh')
+plot([-10,10],[-20,20],'g-.')
+legend('h(x)','y=0','y=2*x')
+hc=double(subs(h,x,c))
+plot(c,hc,'r*')
+text(1.5,1,'MAX')
 
 %{
 Ejercicio 1
@@ -25,6 +62,12 @@ la curva presenten colores y trazo de líneas diferentes. Incluye además en el
 dibujo las ecuaciones de las asíntotas, identificando cada una de ellas. Resalta
 también los extremos encontrados.
 %}
+g =  sqrt((x^3)/(x+1))
+
+%a)
+limit(g,x,-1)
+limit(g,x,-1,'right') %g a la derecha de -1 no existe. no está definida en -1,0
+limit(g,x,-1,'left')  %g a la iquierda de -1 tiende a +inf
 
 %{
 Ejercicio 2
