@@ -65,9 +65,38 @@ también los extremos encontrados.
 g =  sqrt((x^3)/(x+1))
 
 %a)
+%g(x) no está definida en (-1,0)
+double(subs(g,x,-0.5))
+double(subs(g,x,-1))
+double(subs(g,x,0))
+%g(x) tiene una asíntota vertical en x = -1
 limit(g,x,-1)
-limit(g,x,-1,'right') %g a la derecha de -1 no existe. no está definida en -1,0
+limit(g,x,-1,'right')
 limit(g,x,-1,'left')  %g a la iquierda de -1 tiende a +inf
+
+%b)
+%puntos donde no hay derivada: x = -1,0
+a = -1;
+ga = limit(g,x,-1,'left');
+b = -0;
+gb = subs(g,0);
+%puntos donde la derivada vale 0
+c = solve(diff(g) ==0);
+gc = double(subs(g,c));
+%g(x) tiene un mínimo absoluto en x = 0, no tiene máximo absoluto
+ga, gb, gc;
+gb
+%v = [ga, gb, gc]
+
+%c)
+ezplot(g,[-2*pi,2*pi])          %g(x)
+hold on
+plot([-2*pi,2*pi],[0, 0],('k')) %eje X
+plot([0,0],[-1,8],('k'))        %eje Y
+plot([-1,-1],[-1,8],('r--'))    %asíntota vertical
+plot(0,0,'r*')                  %mínimo absoluto
+text(0,0,'MÍN')
+legend('g(x)','OX','OY','x=-1')
 
 %{
 Ejercicio 2
