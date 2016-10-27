@@ -62,6 +62,7 @@ la curva presenten colores y trazo de líneas diferentes. Incluye además en el
 dibujo las ecuaciones de las asíntotas, identificando cada una de ellas. Resalta
 también los extremos encontrados.
 %}
+syms g x
 g =  sqrt((x^3)/(x+1))
 
 %a)
@@ -69,6 +70,16 @@ g =  sqrt((x^3)/(x+1))
 double(subs(g,x,-0.5))
 double(subs(g,x,-1))
 double(subs(g,x,0))
+%asíntotas horizontales: (no hay)
+limit(g,x,inf)
+limit(g,x,-inf)
+%asíntotas oblicuas:  (y=1*m-1/2)
+m = limit(g/x,inf)
+n = limit(g-m*x,inf)
+y = m*x+n %asíntota oblícua
+m1 = limit(g/x,-inf)
+n1 = limit(g-m1*x,-inf)
+y1 = m1*x+n1 %asíntota oblícua
 %g(x) tiene una asíntota vertical en x = -1
 limit(g,x,-1)
 limit(g,x,-1,'right')
@@ -77,26 +88,29 @@ limit(g,x,-1,'left')  %g a la iquierda de -1 tiende a +inf
 %b)
 %puntos donde no hay derivada: x = -1,0
 a = -1;
-ga = limit(g,x,-1,'left');
-b = -0;
-gb = subs(g,0);
+ga = limit(g,x,a,'left');
+b = 0;
+gb = subs(g,b);
 %puntos donde la derivada vale 0
 c = solve(diff(g) ==0);
 gc = double(subs(g,c));
 %g(x) tiene un mínimo absoluto en x = 0, no tiene máximo absoluto
 ga, gb, gc;
-gb
+[b,gb]  %mínimo absoluto
+[c,gc]  %mínimo relativo  subs(diff(g,2),x,-3/2)
 %v = [ga, gb, gc]
 
 %c)
 ezplot(g,[-2*pi,2*pi])          %g(x)
 hold on
-plot([-2*pi,2*pi],[0, 0],('k')) %eje X
-plot([0,0],[-1,8],('k'))        %eje Y
-plot([-1,-1],[-1,8],('r--'))    %asíntota vertical
+plot([-2*pi,2*pi], [0,0], ('k')) %eje X
+plot([0,0], [-1,8], ('k'))       %eje Y
+plot([-1,-1], [-1,8], ('g--'))   %asíntota vertical
+plot([0,2*pi], double(subs(y,[0,2*pi])), ('r--')) %asíntota oblícua y
+plot([-2*pi,-1], double(subs(y1,[-2*pi,-1])), ('y--')) %asíntota oblícua y1
 plot(0,0,'r*')                  %mínimo absoluto
 text(0,0,'MÍN')
-legend('g(x)','OX','OY','x=-1')
+legend('g(x)','OX','OY','x=-1','y=x-1/2','y=-x+1/2')
 
 %{
 Ejercicio 2
@@ -112,6 +126,42 @@ Hazlo de forma que la curva presente un color y trazo de línea diferentes al
 empleado para dibujar la(s) recta(s). Incorpora también texto al dibujo identi-
 ficando la(s) asíntota(s), y además resalta los puntos de inflexión.
 %}
+h(x) = x + (9/sqrt(x^2+1))
+
+%%a)
+%asíntota horizontal: (no hay)
+limit(h,inf)
+limit(h,-inf)
+%asíntota oblícua:
+m = limit(h/x,inf)
+n = limit(h-m*x,inf)
+y = m*x+n %asíntota oblícua
+m1 = limit(h/x,-inf)
+n1 = limit(h-m1*x,-inf)
+y1 = m1*x+n1 %asíntota oblícua
+%asíntotas verticales: (no hay)
+
+%%b)
+solve(diff(h,2)==0)
+p1 = -sqrt(2)/2
+hp1 = double(subs(h,p1))
+double(subs(diff(h,2), -0.8)) %positivo -> cóncava (-inf, p1)
+double(subs(diff(h,2), -0.6)) %negativo -> convexa
+p2 = sqrt(2)/2
+hp2 = double(subs(h,p2))
+double(subs(diff(h,2), 0.6))  %negativo -> convexa (p1, p2)
+double(subs(diff(h,2), 0.8))  %positivo -> cóncava (p2, inf)
+
+%%c)
+ezplot(h,[-10,10])
+hold on
+plot([-10,10],double(subs(y,[-10,10])),'r--')
+legend('h(x)', 'y = x')
+plot(p1,hp1,('r*'))
+plot(p2,hp2,('r*'))
+%diff(h,2)>0 -> convexa
+%diff(h,2)<0 -> cóncava
+%diff(h,2)=0 -> posible punto de inflexión
 
 %{
 Ejercicio 3
