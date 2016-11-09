@@ -141,16 +141,16 @@ n1 = limit(h-m1*x,-inf)
 y1 = m1*x+n1 %asíntota oblícua
 %asíntotas verticales: (no hay)
 
-%%b)
+%%b)ptos de inflexion
 solve(diff(h,2)==0)
 p1 = -sqrt(2)/2
 hp1 = double(subs(h,p1))
-double(subs(diff(h,2), -0.8)) %positivo -> cóncava (-inf, p1)
-double(subs(diff(h,2), -0.6)) %negativo -> convexa
+double(subs(diff(h,2), -0.8)) %positivo -> convexa (-inf, p1)
+double(subs(diff(h,2), -0.6)) %negativo -> concava
 p2 = sqrt(2)/2
 hp2 = double(subs(h,p2))
-double(subs(diff(h,2), 0.6))  %negativo -> convexa (p1, p2)
-double(subs(diff(h,2), 0.8))  %positivo -> cóncava (p2, inf)
+double(subs(diff(h,2), 0.6))  %negativo -> concava (p1, p2)
+double(subs(diff(h,2), 0.8))  %positivo -> convexa (p2, inf)
 
 %%c)
 ezplot(h,[-10,10])
@@ -178,6 +178,58 @@ y un trazo de línea diferentes. Incorpora también texto en el dibujo identifi-
 cando cada una de las asíntotas con la ecuación correspondinte. Resalta también
 los extremos encontrados.
 %}
+h = log(sqrt((2*x^3) + (3*x^2)))
+%%a) Continuidad:
+%miramos donde la raiz vale 0
+a = double(solve(((2*x^3) + (3*x^2))==0))
+a = a(1)
+%a la izquierda de -1.5 la raíz no está definida
+%para valores menores que 0 el logaritmo no está definido
+%%%la función es continua en [-3/2,0) U (0,+inf)
+
+%%b) Asíntotas:
+%Asíntotas verticales:
+limit(h,x,0,'right')  % = -inf
+limit(h,x,0,'left')   % = -inf
+b = 0
+%%%en x = b = 0 hay una asíntota vertical
+
+%Asíntotas horizontales:
+limit(h,x,+inf) % = inf
+limit(h,x,-inf) % = inf
+%%%no hay asíntotas horizontales
+
+%Asíntotas oblicuas:
+m = limit(h/x,inf)
+n = limit(h-m*x,inf)
+%%%es la asíntota vertical en 0
+m = limit(h/x,-inf)
+n = limit(h-m*x,-inf)
+%%%es la asíntota vertical en 0
+%%%no hay asíntotas oblícuas (y = m*x+n)
+
+%%c) Extremos:
+%1) Ptos de no derivabilidad x = 0 (b)
+%%%en x = 0, h tiende a -inf, por lo que no habrá un mínimo absoluto en h
+%2) Extremos del intervalo: x = -3/2 (a)
+ha = double(limit(h,x,-3/2,'right')) % = -inf
+%%%en x = -3/2 no hay un mínimo, tiende a -inf
+%3) Ptos donde la derviada vale 0
+dh = diff(h);
+c = double(solve(dh == 0))
+hc = double(subs(h,x,c))
+%%%en (c,hc) la función tine un máximo relativo. En el intervalo (-3/2,0)
+%%%la función no tiene máximo absoluto ya que tiende a +inf
+
+%%d) Representar:
+ezplot(h,[-3/2,2*pi])
+hold on
+plot([-2,7],[0,0],'g')    %eje OX
+plot([0,0],[-4,4],'r-.')  %asíntota vertical
+legend('h(x)','OX', 'x = 0')
+plot(c,hc,'ko')
+text(c,hc,'máx')
+%%%im a beast.
 
 %{
 Ejercicio 4
@@ -194,6 +246,51 @@ d) Incorpora a la gráfica del apartado a) el punto de inflexión obtenido, e in
 troduce texto para identificar el correspondiente punto en la gráfica de g, y
 también la(s) asíntota(s) representada(s).
 %}
+g = x /(1+e^(3/((x^2)+1)))-1
+
+%%a) Asíntotas:
+%Asíntotas verticales (no tiene)
+%Asíntotas horizontales:
+limit(g,x,inf)
+limit(g,x,-inf)
+%%%no hay asíntotas horizontales
+%Asíntotas oblícuas:
+m = limit(g/x,x,inf)
+n = limit(g-m*x,inf)
+y = m*x+n
+%%%hay una asíntota oblicua cuando h tiende a +inf
+m1= limit(g/x,x,-inf)
+n1= limit(g-m1*x,-inf)
+y1= m1*x+n1
+%%%hay una asíntota oblicua cuando h tiende a -inf (la misma)
+%Representación:
+ezplot(g,[-2*pi,2*pi])
+hold on
+gy=double(subs(g,[-2*pi,2*pi]));
+plot([-2*pi,2*pi],gy,'r-.')
+
+%%b) Derivada:
+dg = diff(g)
+a = double(subs(dg,x,-1))
+b = double(subs(dg,x, 1))
+%%% a>0 y b>0, la funcion es siempre creciente
+m = double(subs(g,x,-2*pi))
+M = double(subs(g,x,2*pi))
+%%% m y M son mínimo y máximo relativos relativamente en [-2pi,2pi]
+
+
+%%c) Derviada segunda: ???
+a1 = 1
+b1 = -1
+ga = subs(g,x,a1)
+gb = subs(g,x,b1)
+g0 = subs(g,x,0)
+((gb-ga)/b1-a1) * (-a) + ga
+%%%g es convexa??
+
+%%d)
+plot(0,-1,'ro')
+text(0,-1,'pto. inflexion')
 
 %{
 Ejercicio 5
@@ -211,7 +308,21 @@ manera qeu las dos puedan observarse a la vez, representa la curva para valores
 de x entre -10 y 10, resaltando en el dibujo los extremos y los puntos de in-
 flexión encontrados incluyendo además texto para identificarlos.
 %}
-
+h(x) = (x^2 - 3)/(x^2 + 8*x + 16)
+%%a)
+%asíntota horizontal: (no hay)
+limit(h,inf)
+limit(h,-inf)
+%asíntota oblícua:
+m = limit(h/x,inf)
+n = limit(h-m*x,inf)
+y = m*x+n %asíntota oblícua
+m1 = limit(h/x,-inf)
+n1 = limit(h-m1*x,-inf)
+y1 = m1*x+n1 %asíntota oblícua
+%asíntotas verticales: x = -4
+limit(h,x,-4,'left')
+limit(h,x,-4,'right')
 %{
 Ejercicio 6
 Sea la función f dada por f(x) = (1 - 2*x)/(x^2 - 5*x + 6)
@@ -230,3 +341,66 @@ ción f para valores de x pertenecientes al intervalo [-4,3], resaltando en el
 dibujo los extremos y puntos de inflexión encontrados e incluyendo además texto
 para identificarlos.
 %}
+f = (1-2*x)/(x^2 - 5*x +6 )
+[num,den] = numden(f);
+
+%%a) Asíntotas:
+%Asíntotas verticales: limit(f,x,a,'right') limit(f,x,a,'left')
+a = double(solve(den==0));
+limit(f,x,a(1),'left')  % = -inf
+limit(f,x,a(1),'right') % = +inf
+%%%asíntota vertical en x = 2
+limit(f,x,a(2),'left')  % = +inf
+limit(f,x,a(2),'right') % = -inf
+%%%asíntota vertical en x = 3
+
+%Asíntotas horizontales: limit(f,x,inf) limit(f,x,-inf)
+limit(f,x,inf)
+limit(f,x,-inf)
+%%%asíntota horizontal en y = 0
+
+%Asíntotas oblicuas: m = limit(f/x,inf) n = limit(h-m*x,inf) y=m*x+n
+%%%no hay asíntotas oblícuas
+
+%%b) Representación:
+ezplot(f,[0,5])
+hold on
+plot([2 2], [-38,45], 'r--.')
+plot([3 3], [-38,45], 'r--.')
+plot([0 5], [0 0], 'k--')
+legend('f(x)', 'x = 2', 'x = 3', 'y = 0')
+
+%%c) Extremos relativos:
+%ptos. de no derivabilidad 2, 3 (no hay extremos relativos
+%ptos donde la derivada == 0
+df = diff(f)
+r  = double(solve(df ==0))
+m1 = double(subs(f,x,r(1)))
+m2 = double(subs(f,x,r(2)))
+m = [m1 m2]'
+%%% hay un mínimo relativo en (r(1),m(1)) y un máximo relativo en (r(2),m(2))
+%plot(r(1),m(1))
+%plot(r(2),m(2))
+
+%%d) Concavidad / Ptos. de inflexión.
+%posibles puntos de inflexión:
+df2= diff(f,2)
+s = double(solve(df2==0))
+%%%no hay puntos de inflexión
+%estudiamos por intervalos:
+double(subs(df2, 1))  % <0. cóncava
+double(subs(df2, 2.5))% >0. convexa
+double(subs(df2, 4))  % <0. cóncava
+%%%f es cóncava en R menos en (2,3) que es convexa.
+
+%%e) Representar:
+hold off
+figure 2
+ezplot(f, [-4,3])
+hold on
+plot(r(1),m(1),'ro')
+text(r(1),m(1),'mín')
+plot(r(2),m(2),'ro')
+text(r(2),m(2),'máx')
+
+
